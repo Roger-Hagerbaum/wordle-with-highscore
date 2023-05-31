@@ -1,5 +1,6 @@
 import './App.css';
 import {useEffect} from "react";
+import { compareWords } from './compareWords.js';
 
 function App() {
   const callApi = async () => {
