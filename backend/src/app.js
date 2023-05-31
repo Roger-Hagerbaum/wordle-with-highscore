@@ -1,5 +1,6 @@
 import express from "express";
 import { engine } from "express-handlebars";
+import { randomWord } from "./utils/randomWord.js";
 import cors from "cors";
 
 
@@ -7,7 +8,7 @@ const app = express();
 
 app.use(cors());
 
-
+GIT
 app.get('/api', (req, res) => {
     res.send({ message: 'Yes i am here!' });
 });
