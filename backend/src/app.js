@@ -9,8 +9,12 @@ import  {connect} from "mongoose";
 
 
 const app = express();
-connect('mongodb://localhost:27017/test');
 
+app.engine("handlebars", engine());
+app.set("view engine", "handlebars");
+app.set('views', "templates");
+
+connect('mongodb://localhost:27017/test');
 app.use(cors());
 app.use(express.json());
 
@@ -28,6 +32,7 @@ app.post("/api/game",  async (req, res) => {
         unique: data.unique,
         length: data.length
     }
+    console.log(game);
     GAME.push(game);
     res.status(201).json({id: game.id});
 
@@ -55,6 +60,7 @@ app.post("/api/game/high-score", async (req, res) => {
     const data = req.body;
     const name = req.body.name;
     const game = GAME.find((game) => game.id === data.id);
+    console.log(game);
     if (!game) {
         res.status(404).end();
     }
@@ -66,7 +72,7 @@ app.post("/api/game/high-score", async (req, res) => {
         name,
     });
     await hs.save();
-
+    console.log(hs);
     res.status(201).json({
         ...game,
         name,
@@ -75,7 +81,8 @@ app.post("/api/game/high-score", async (req, res) => {
 
 app.get("/api/high-score", async (req, res) => {
     const data = req.body;
-    const hs = await Highscore.find();
+    const hs = await Highscore.find()
+    ;
     const filter = hs.filter((hS) => {
         if(data.length && hS.length !== data.length) {
             return false
@@ -88,7 +95,12 @@ app.get("/api/high-score", async (req, res) => {
         return true
 
     });
-    res.json({filter})
+    res.render("highscore", {hs:filter.map((hs) => ({
+            name: hs.name,
+            wordLength: hs.length,
+            unique: hs.unique,
+            duration: (hs.endTime.getTime() - hs.startTime.getTime()) / 1000,
+        })) });
 });
 
 

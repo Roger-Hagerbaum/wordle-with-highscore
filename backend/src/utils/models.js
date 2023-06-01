@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const Highscore = mongoose.model('highscores', {
     name: String,
     id: String,
-    starTime: Date,
+    startTime: Date,
     endTime: Date,
     length: Number,
     unique: Boolean,
