@@ -73,8 +73,22 @@ app.post("/api/game/high-score", async (req, res) => {
     });
 });
 
-app.get('/api', (req, res) => {
-    res.send({ message: 'Yes i am here!' });
+app.get("/api/high-score", async (req, res) => {
+    const data = req.body;
+    const hs = await Highscore.find();
+    const filter = hs.filter((hS) => {
+        if(data.length && hS.length !== data.length) {
+            return false
+        }
+        if(data.unique === true && !hS.unique) {
+            return false
+        }else if (data.unique === false && hS.unique){
+            return false
+        }
+        return true
+
+    });
+    res.json({filter})
 });
 
 
