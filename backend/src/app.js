@@ -80,16 +80,21 @@ app.post("/api/game/high-score", async (req, res) => {
 });
 
 app.get("/api/high-score", async (req, res) => {
-    const data = req.body;
+    const wordLength = req.query.wordLength ? parseInt(req.query.wordLength): undefined;
+    const unique = req.query.unique;
+
     const hs = await Highscore.find()
     ;
     const filter = hs.filter((hS) => {
-        if(data.length && hS.length !== data.length) {
+        if(wordLength === undefined){
             return false
-        }
-        if(data.unique === true && !hS.unique) {
+        }else if(wordLength && hS.length !== wordLength) {
             return false
-        }else if (data.unique === false && hS.unique){
+        }if(unique === undefined){
+            return false
+        }else if(unique.unique === true && !hS.unique) {
+            return false
+        }else if (unique.unique === false && hS.unique){
             return false
         }
         return true
@@ -101,6 +106,7 @@ app.get("/api/high-score", async (req, res) => {
             unique: hs.unique,
             duration: (hs.endTime.getTime() - hs.startTime.getTime()) / 1000,
         })) });
+
 });
 
 
