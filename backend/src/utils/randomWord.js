@@ -1,32 +1,22 @@
+
 import fetch from 'node-fetch';
-export async function randomWord(length, unique) {
+export async function getRandomWord(length, unique) {
 
-    const res = (
-        {
-            "Hello": 5,
-            "CYCLE": 5,
-            "FALSE": 5,
-            "TRUTH": 5,
-            "COOL": 4,
-            "FULL": 4,
-            "HIGH": 4,
-            "EMPTY": 4,
-            "TALL": 4,
-        }
+    const res = await fetch(
+        'https://raw.githubusercontent.com/dwyl/english-words/master/words_dictionary.json'
     );
-
     const body = await res.json();
     const words = Object.keys(body).filter(
         (word) =>
             word.length === length
     );
-    const random = Math.floor(Math.random() * words.length);
     if (unique) {
-        const uniqueC = words.filter(
+        const uniqueWord = words.filter(
             (e) => [...new Set(e.split(''))].join('') === e );
-        return uniqueC[
-            Math.floor(Math.random() * uniqueC.length)
+        return uniqueWord[
+            Math.floor(Math.random() * uniqueWord.length)
             ].toUpperCase();
     }
-    return await words[random];
+    const random = Math.floor(Math.random() * words.length);
+    return words[random];
 }
