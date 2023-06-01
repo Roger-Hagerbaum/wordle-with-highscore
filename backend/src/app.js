@@ -37,6 +37,10 @@ app.post("/api/game",  async (req, res) => {
     res.status(201).json({id: game.id});
 
 });
+app.get("/api/info", (req, res) => {
+    res.render("info");
+
+});
 
 app.post("/api/game/guess", (req, res) => {
     const data = req.body;
