@@ -6,7 +6,7 @@ const Highscore = mongoose.model('highscores', {
     id: String,
     startTime: Date,
     endTime: Date,
-    length: Number,
+    wordLength: Number,
     unique: Boolean,
     guesses: [
         {

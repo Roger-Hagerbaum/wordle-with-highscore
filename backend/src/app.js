@@ -22,7 +22,7 @@ const GAME = [];
 
 app.post("/api/game",  async (req, res) => {
     const data = req.body;
-    const word = await getRandomWord(data.length, data.unique);
+    const word = await getRandomWord(data.wordLength, data.unique);
     console.log(word)
     const game = {
         id: uuidv4(),
@@ -30,7 +30,7 @@ app.post("/api/game",  async (req, res) => {
         guesses: [],
         word: word,
         unique: data.unique,
-        length: data.length
+        wordLength: data.wordLength
     }
     console.log(game);
     GAME.push(game);
