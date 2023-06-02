@@ -34,7 +34,7 @@ app.post("/api/game",  async (req, res) => {
     }
     console.log(game);
     GAME.push(game);
-    res.status(201).json({id: game.id});
+    res.status(201).json({id: game.id,wordLength: game.wordLength, unique: game.unique });
 
 });
 app.get("/api/info", (req, res) => {
@@ -56,7 +56,7 @@ app.post("/api/game/guess", (req, res) => {
             game.endTime = new Date();
             res.status(201).json({correct: true, guesses: game.guesses, game});
         }else
-            res.status(201).json({correct: true, guesses: game.guesses});
+            res.status(201).json({correct: false, guesses: game.guesses});
     }
 });
 
