@@ -3,6 +3,7 @@ import './App.css';
 import {Game, GameState} from "./types";
 import HomeScreen from "./screen/HomeScreen";
 import GameScreen from "./screen/GameScreen";
+import WonScreen from "./screen/WonScreen";
 
 const App: React.FC = () => {
     const [gameState, setGameState] = useState<GameState>(GameState.HOME);
@@ -63,7 +64,9 @@ const App: React.FC = () => {
         } else {
             return <h1>Loading game....</h1>;
         }
-    }else{
+    }else if (gameState === GameState.WON){
+        return <WonScreen />;
+    }else  {
         return <></>;
     }
 };
