@@ -50,13 +50,13 @@ const App: React.FC = () => {
                                    }
                                );
                                const data = await res.json();
+
+                               setGame({
+                                   ...game,
+                                   guesses: data.guesses,
+                               });
                                if (data.correct) {
                                    setGameState(GameState.WON);
-                               } else  {
-                                   setGame({
-                                       ...game,
-                                       guesses: data.guesses,
-                                   });
                                }
                            }}
                />
@@ -65,7 +65,24 @@ const App: React.FC = () => {
             return <h1>Loading game....</h1>;
         }
     }else if (gameState === GameState.WON){
-        return <WonScreen />;
+        return (
+        <WonScreen game={game!} onSubmit={async name => {
+            await  fetch(`http://localhost:5080/api/game/high-score` ,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        id: game!.id,
+                        name: name,
+                    }),
+                }
+            );
+            window.location.href = "http://localhost:5080/api/high-score"
+        }}
+        />
+    );
     }else  {
         return <></>;
     }

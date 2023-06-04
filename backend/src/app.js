@@ -87,12 +87,12 @@ app.get("/api/high-score", async (req, res) => {
     const wordLength = req.query.wordLength ? parseInt(req.query.wordLength): undefined;
     const unique = req.query.unique;
 
-    const hs = await Highscore.find()
-    ;
+    const hs = await Highscore.find();
+
     const filter = hs.filter((hS) => {
-        if(wordLength === undefined){
-            return false
-        }else if(wordLength && hS.length !== wordLength) {
+        if(wordLength === undefined && unique === undefined){
+            return true
+        }else if(wordLength && hS.wordLength !== wordLength) {
             return false
         }if(unique === undefined){
             return false
