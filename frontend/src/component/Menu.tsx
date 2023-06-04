@@ -1,7 +1,8 @@
 import React from "react";
+import "../style/Style.css";
 
 const Menu: React.FC = () => (
-  <ul>
+  <ul className={"Menu"}>
       <li>
           <a href={"/"}>Game</a>
       </li>

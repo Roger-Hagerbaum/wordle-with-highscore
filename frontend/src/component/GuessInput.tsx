@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import "../style/Style.css";
 type GuessInputProps = {
     wordLength: number;
     onGuess: (guess: string) => void;
@@ -10,9 +10,9 @@ const GuessInput: React.FC<GuessInputProps> = ({onGuess, wordLength}) => {
 
     return (
         <div>
-            <ul>
+            <ul className={"GuessInput"}>
                 {Array.from(new  Array(wordLength)).map((_, index) => (
-                    <li key={index}>X</li>
+                    <li key={index}></li>
                 ))}
             </ul>
             <input

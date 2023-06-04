@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import "../style/Style.css";
 
 const Timer: React.FC = () => {
     const [startTime, setStartTime] = useState<Date | null>(null);

@@ -113,5 +113,5 @@ app.get("/api/high-score", async (req, res) => {
 
 });
 
-
+app.use(express.static("./public"));
 export default app;

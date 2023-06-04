@@ -1,0 +1,71 @@
+.GuessBox {
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.GuessBox li {
+    padding: 0;
+    list-style: none;
+    width: 30px;
+    height: 30px;
+    margin: 0.1em;
+}
+.GuessBox .correct {
+    background-color: greenyellow;
+}
+.GuessBox .incorrect {
+    background-color: red;
+}
+.GuessBox .misplaced {
+    background-color: orange;
+}
+.GuessList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.GuessInput {
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.GuessInput li {
+    background-color: lightgray;
+    padding: 0;
+    list-style: none;
+    width: 30px;
+    height: 30px;
+    margin: 0.1em;
+}
+.HomeScreen {
+
+}
+.Menu {
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.Menu li {
+    float: left;
+    list-style: none;
+    text-align: center;
+    margin-right: 30px;
+    width: 100px;
+    line-height: 30px;
+    background-color: #ccd9bb;
+    border-radius: 15px;
+}
+.Menu li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+.Menu li a:hover {
+    text-decoration: none;
+    color: blue;
+    display: block;
+}
+body {
+    background-color: azure;
+}
+
